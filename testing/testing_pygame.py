@@ -68,6 +68,8 @@ def flappy_bird():
             bird_group.update()
             if bird.rect.bottom >= screen_height - 10:
                 running = False
+            if bird.rect.top <= -30:
+                running = False
             
         pygame.display.flip()
         clock.tick(60)
