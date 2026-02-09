@@ -1,12 +1,14 @@
+#Flappy Bird
 def flappy_bird():
     import pygame
     import sys
+    import random
     pygame.init()
 
     class Bird(pygame.sprite.Sprite):
         def __init__(self):
             super().__init__()
-            original = pygame.image.load("testing/bird.png").convert_alpha()
+            original = pygame.image.load("sprites/bird.png").convert_alpha()
             self.original_image = pygame.transform.scale(original, (80, 50))
             self.image = self.original_image
             self.rect = self.image.get_rect()
@@ -33,8 +35,17 @@ def flappy_bird():
             self.velocity -= 12
     
     class Pipe(pygame.sprite.Sprite):
-        def __init__(self):
-            pass
+        def __init__(self, point):
+            super().__init__()
+            original = pygame.image.load("sprites/pipe.png").convert_alpha()
+            self.original_image = pygame.transform.scale(original, (100, 750))
+            self.image = self.original_image
+            self.rect = self.image.get_rect()
+            self.rect.center = (screen_width, point)
+        
+        def update(self, point):
+            self.rect[1] = point - 372
+            self.rect.centerx -= 5
     
     screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
     clock = pygame.time.Clock()
@@ -46,6 +57,11 @@ def flappy_bird():
     bird_group = pygame.sprite.Group()
     bird_group.add(bird)
 
+    point = screen_height - random.randint(250, screen_height - 250)
+    pipe = Pipe(point)
+    pipe_group = pygame.sprite.Group()
+    pipe_group.add(pipe)
+    
     running = True
     start = False
     while running:
@@ -58,16 +74,28 @@ def flappy_bird():
             if event.type == pygame.KEYDOWN and event.key == pygame.K_UP or event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 start = True
                 bird.jump()
+            if pygame.sprite.spritecollide(bird, pipe_group, False):
+                print("dead to pipe")
+                running = False
 
         # SET UP
         screen.fill("light blue")
         bird_group.draw(screen)
+        pipe_group.draw(screen)
         
         # UPDATE
         if start == True:
+            # Move dot across x
+            # Update pipe
             bird_group.update()
-            if bird.rect.bottom >= screen_height - 10:
+            pipe_group.update(point)
+            if bird.rect.bottom >= screen_height + 15:
+                print("dead to bottom of screen")
                 running = False
+            if bird.rect.top <= -30:
+                print("dead to top of screen")
+                running = False
+            
             
         pygame.display.flip()
         clock.tick(60)
