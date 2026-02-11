@@ -37,29 +37,29 @@ def flappy_bird():
     class PipeTop(pygame.sprite.Sprite):
         def __init__(self, point):
             super().__init__()
-            original = pygame.image.load("sprites/pipe.png").convert_alpha()
+            original = pygame.image.load("sprites\pixil-frame-0 (1).png").convert_alpha()
             self.original_image = pygame.transform.scale(original, (100, 1300))
             self.image = self.original_image
             self.rect = self.image.get_rect()
             self.rect.center = [screen_width, point]
 
         def update(self, point):
-            self.rect[1] = point - 372
+            self.rect[1] = point - 800
             
             self.rect.centerx -= 5
     class PipeBottom(pygame.sprite.Sprite):
         def __init__(self, point2):
             super().__init__()
-            original = pygame.image.load("sprites/pipe.png").convert_alpha()
+            original = pygame.image.load("sprites\pixil-frame-0 (1).png").convert_alpha()
             self.original_image = pygame.transform.scale(original, (100, 1300))
+            self.original_image = pygame.transform.flip(self.original_image, False, True)
             self.image = self.original_image
             self.rect = self.image.get_rect()
-            point2 = point +800
             self.rect.center = [screen_width, point2]
 
 
         def update(self, point2):
-            self.rect[1] = point2 + 800
+            self.rect[1] = point2
 
             self.rect.centerx -= 5
     
@@ -75,11 +75,14 @@ def flappy_bird():
     bird_group = pygame.sprite.Group()
     bird_group.add(bird)
 
-    point = random.randint(0, 1200)
+    point = random.randint(-400,500)
+    point2 = point + 850
     pipe1 = PipeTop(point)
-    pipe_group = pygame.sprite.Group()
-    pipe_group.add(pipe1)
+    pipe1_group = pygame.sprite.Group()
+    pipe1_group.add(pipe1)
     pipe2 = PipeBottom(point)
+    pipe2_group = pygame.sprite.Group()
+    pipe2_group.add(pipe2)
     
     running = True
     start = False
@@ -100,14 +103,17 @@ def flappy_bird():
         # SET UP
         screen.fill("light blue")
         bird_group.draw(screen)
-        pipe_group.draw(screen)
+        pipe1_group.draw(screen)
+        pipe2_group.draw(screen)
         
         # UPDATE
         if start == True:
             # Move dot across x
             # Update pipe
             bird_group.update()
-            pipe_group.update(point)
+            pipe1_group.update(point)
+            point2 = point + 800
+            pipe2_group.update(point2)
             if bird.rect.bottom >= screen_height + 15:
                 print("dead to bottom of screen")
                 running = False
@@ -121,13 +127,15 @@ def flappy_bird():
                 point = screen_height - random.randint(250, screen_height - 250)
                 pipe1.rect.center = (screen_width, point)
                 pipe2.rect.center = (screen_width, point2)
-            
+            if pipe1.rect.center[0] < 600 and pipe1.rect.center[0] > 590:
+                score += 1
             
         pygame.display.flip()
         clock.tick(50)
 
     pygame.quit()
-    sys.exit()
+    print(f"Score: {score}")
     return score
+    sys.exit()
 
 flappy_bird()
