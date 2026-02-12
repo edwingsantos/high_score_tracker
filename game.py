@@ -37,7 +37,7 @@ def flappy_bird():
     class PipeTop(pygame.sprite.Sprite):
         def __init__(self, point):
             super().__init__()
-            original = pygame.image.load("sprites\pixil-frame-0 (1).png").convert_alpha()
+            original = pygame.image.load("sprites\pipe.png").convert_alpha()
             self.original_image = pygame.transform.scale(original, (100, 1300))
             self.image = self.original_image
             self.rect = self.image.get_rect()
@@ -50,7 +50,7 @@ def flappy_bird():
     class PipeBottom(pygame.sprite.Sprite):
         def __init__(self, point2):
             super().__init__()
-            original = pygame.image.load("sprites\pixil-frame-0 (1).png").convert_alpha()
+            original = pygame.image.load("sprites/pipe.png").convert_alpha()
             self.original_image = pygame.transform.scale(original, (100, 1300))
             self.original_image = pygame.transform.flip(self.original_image, False, True)
             self.image = self.original_image
