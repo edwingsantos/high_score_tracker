@@ -20,7 +20,7 @@ def flappy_bird():
         def update(self):
             self.velocity += self.gravity
             self.rect.y += self.velocity
-            self.angle = self.velocity * -5
+            self.angle = self.velocity * -6
             if self.angle < -90:
                 self.angle = -90
             self.image = pygame.transform.rotate(self.original_image, self.angle)
@@ -136,6 +136,5 @@ def flappy_bird():
     pygame.quit()
     print(f"Score: {score}")
     return score
-    sys.exit()
 
 flappy_bird()
