@@ -33,7 +33,7 @@ def flappy_bird():
         def __init__(self):
             super().__init__()
             original = pygame.image.load("sprites/pipe.png").convert_alpha()
-            self.image = pygame.transform.scale(original, (100, 900))
+            self.image = pygame.transform.scale(original, (100, 1200))
             self.rect = self.image.get_rect()
 
         def update(self):
@@ -43,7 +43,7 @@ def flappy_bird():
         def __init__(self):
             super().__init__()
             original = pygame.image.load("sprites/pipe.png").convert_alpha()
-            self.image = pygame.transform.scale(original, (100, 900))
+            self.image = pygame.transform.scale(original, (100, 1200))
             self.image = pygame.transform.flip(self.image, False, True)
             self.rect = self.image.get_rect()
 
