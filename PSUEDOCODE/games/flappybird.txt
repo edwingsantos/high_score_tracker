@@ -1,0 +1,14 @@
+#Make a function that will contain the entire game
+#Using pygame, make a class for the bird
+    #The class will contain the sprite as well as the jump and the angle the bird is looking
+#There will be two classes for the pipes
+    #The top pipe will be the main pipe, and have the code to set the random height
+    #The bottom pipe will follow where the top pipe goes
+    #Both pipes will have collison, and if the birds own collison box overlaps with either, the game will quit, and say what killed you
+    #The pipes movement will be based on a point that has a random y value, and an x value that decreases at a rate of 5.
+        #The location of the point is decided with rng that allows it to be anywhere from the very top of the screen, and the very bottom, while still making it possible
+    #When the pipe reach a certain x value (where the bird is) it will increment the score by 1
+    #When the pipe reaches the end of the screen, it will be set back to the other side and the point will be randomized again
+#The bottom and the top of the screen will also have this, killing you if touched and saying what killed you
+#When killed the game will print the score in the terminal, and then return the score to the main function so that the highscore function can take it
+#The player can also exit by pressing 'q' if they want to
