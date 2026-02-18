@@ -1,0 +1,6 @@
+ES 1srt psedocode activity diagram
+open csv file and write it as file 
+append the score from the game to the line 
+
+
+
