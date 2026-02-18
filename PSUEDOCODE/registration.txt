@@ -1,0 +1,26 @@
+ask user to create a username
+open accounts csv and loop through every row
+    if a row has that username
+        tell the user that there is already and account with that name
+        ask them if they would like to try and login to that account
+        if they would
+            call the login_logout function
+        if they want still want to create an account
+            loop back to the beginning of the file (continue in python)
+ask user if they would like a generated password or want to make one themselves
+if they choose to have a password generated for them
+    ask the user to select the requirements they would like for their password
+    generate a password according to those requirements
+    ask the user if they like the password given
+    if they don't
+        loop back through this section (the generate password section)
+if they choose to create a password
+    ask the user for the password they'd like to use
+    ask them to confirm if that's the password they'd like
+    if it isn't
+        loop back through this section (the create password section)
+open the accounts csv
+    insert/append a new row on the bottom with the username and password they've inputted and all their scores as 0
+    return back to the original function (where it was called)
+
+ADD ADMIN FUNCTIONALITY

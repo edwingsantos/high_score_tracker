@@ -2,7 +2,6 @@
 
 def flappy_bird():
     import pygame
-    import sys
     import random
     pygame.init()
     class Bird(pygame.sprite.Sprite):
@@ -25,46 +24,35 @@ def flappy_bird():
                 self.angle = -90
             self.image = pygame.transform.rotate(self.original_image, self.angle)
             self.rect = self.image.get_rect(center=self.rect.center)
-            run = True
-            if bird.rect.bottom > screen_height - 10:
-                run = False
-                return run
         
         def jump(self):
             self.velocity = 0
             self.velocity -= 12
     
     class PipeTop(pygame.sprite.Sprite):
-        def __init__(self, point):
-            super().__init__()
-            original = pygame.image.load("sprites\pipe.png").convert_alpha()
-            self.original_image = pygame.transform.scale(original, (100, 1300))
-            self.image = self.original_image
-            self.rect = self.image.get_rect()
-            self.rect.center = [screen_width, point]
-
-        def update(self, point):
-            self.rect[1] = point - 800
-            
-            self.rect.centerx -= 5
-    class PipeBottom(pygame.sprite.Sprite):
-        def __init__(self, point2):
+        def __init__(self):
             super().__init__()
             original = pygame.image.load("sprites/pipe.png").convert_alpha()
-            self.original_image = pygame.transform.scale(original, (100, 1300))
-            self.original_image = pygame.transform.flip(self.original_image, False, True)
-            self.image = self.original_image
+            self.image = pygame.transform.scale(original, (100, 900))
             self.rect = self.image.get_rect()
-            self.rect.center = [screen_width, point2]
 
+        def update(self):
+            self.rect.centerx -= 5
 
-        def update(self, point2):
-            self.rect[1] = point2
+    class PipeBottom(pygame.sprite.Sprite):
+        def __init__(self):
+            super().__init__()
+            original = pygame.image.load("sprites/pipe.png").convert_alpha()
+            self.image = pygame.transform.scale(original, (100, 900))
+            self.image = pygame.transform.flip(self.image, False, True)
+            self.rect = self.image.get_rect()
 
+        def update(self):
             self.rect.centerx -= 5
     
     screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN, vsync=1)
     clock = pygame.time.Clock()
+    font = pygame.font.Font("sprites/font.TTF", size= 48)
     score = 0
     screen_width, screen_height = pygame.display.get_surface().get_size()
     pygame.display.set_caption("Flappy Bird")
@@ -75,17 +63,26 @@ def flappy_bird():
     bird_group = pygame.sprite.Group()
     bird_group.add(bird)
 
-    point = random.randint(-400,500)
-    point2 = point + 850
-    pipe1 = PipeTop(point)
+    gap = 260
+    margin = 120
+    def spawn_pipes():
+        gap_center = random.randint(margin, screen_height - margin)
+        top_y = gap_center - gap // 2
+        bottom_y = gap_center + gap // 2
+        pipe1.rect.midbottom = (screen_width, top_y)
+        pipe2.rect.midtop = (screen_width, bottom_y)
+
+    pipe1 = PipeTop()
     pipe1_group = pygame.sprite.Group()
     pipe1_group.add(pipe1)
-    pipe2 = PipeBottom(point)
+    pipe2 = PipeBottom()
     pipe2_group = pygame.sprite.Group()
     pipe2_group.add(pipe2)
-    
+    spawn_pipes()
+
     running = True
     start = False
+    passed_pipe = False
     while running:
         # INPUTS
         for event in pygame.event.get():
@@ -108,28 +105,30 @@ def flappy_bird():
         
         # UPDATE
         if start == True:
-            # Move dot across x
-            # Update pipe
             bird_group.update()
-            pipe1_group.update(point)
-            point2 = point + 800
-            pipe2_group.update(point2)
+            pipe1_group.update()
+            pipe2_group.update()
+
             if bird.rect.bottom >= screen_height + 15:
                 print("dead to bottom of screen")
                 running = False
             if bird.rect.top <= -30:
                 print("dead to top of screen")
                 running = False
-            if pygame.Rect.colliderect(bird.rect, pipe1.rect) == True or pygame.Rect.colliderect(bird.rect, pipe2.rect) == True:
-                print("dead to pipe")
-                running = False
             if pipe1.rect.center[0] < 0:
-                point = screen_height - random.randint(250, screen_height - 250)
-                pipe1.rect.center = (screen_width, point)
-                pipe2.rect.center = (screen_width, point2)
-            if pipe1.rect.center[0] < 600 and pipe1.rect.center[0] > 590:
+                spawn_pipes()
+                passed_pipe = False
+            if pipe1.rect.centerx < bird.rect.centerx and not passed_pipe:
                 score += 1
-            
+                passed_pipe = True
+            if pipe1.rect.right < 0:
+                passed_pipe = False
+
+        text_surface = font.render(f"{score}", True, (255,255,255))
+        text_rect = text_surface.get_rect()
+        text_rect.center = (screen_width // 2, 100)
+        screen.blit(text_surface, text_rect)
+
         pygame.display.flip()
         clock.tick(50)
 
