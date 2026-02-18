@@ -1,0 +1,7 @@
+#Make a function that contains the entire game
+#The game will start by displaying the instructions, something along the lines of 'this is a reaction time game, click when the screen goes from red to green'
+#pygame would be used to make the screen and to change the colors.
+#The score would be the reaction time, so the lower would be better
+#The time would be kept by using tick methods from pygame
+#The screen would quit when they click, and if they did it before they were supposed to it would tell them something like 'to early' and then loop, making them try again until they click when they are supposed to
+#When they click at the right time, it would print the time, and then return them and the time, to the highscore tracker
