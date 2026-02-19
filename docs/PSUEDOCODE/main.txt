@@ -1,13 +1,6 @@
-
-make a function for loged in
-    while loop
-        if user is loged in 
-            make user type their username
-            make user type their password
-            check if username and password are in the csvfile
-                if username and password are not in the csv file, print that the account is not avalible and call main
-                else make a string called chioce and ask the user if they want to pick a game or change user details
-            make a while loop
+make a funtion for game chioce
+    make a while loop
+         make a string called chioce and ask the user if they want to pick a game or change user details
             if user picks to play game, check if the game is avalible
             if game is not avalible then continue print this game does not exist 
             else call the game function
@@ -17,6 +10,18 @@ make a function for loged in
             make user select an user name
             call user registration function
         else print to create an account and call main
+
+
+make a function for loged in
+    while loop
+        if user is loged in 
+            make user type their username
+            make user type their password
+            open the csv file and read it as file
+            check if username and password are in the file
+                if username and password are not in the csv file, print that the account is not avalible and return
+                else call funtion for game choice
+            
 make a function for not loged in
     while loop 
         ask user to login, create a new account or log out
