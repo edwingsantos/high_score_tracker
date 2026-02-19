@@ -19,8 +19,10 @@ if they choose to create a password
     ask them to confirm if that's the password they'd like
     if it isn't
         loop back through this section (the create password section)
+if their name is admin and their password is YIPPEESKIPPEE
+    make an admin variable true
+otherwise
+    make the admin variable false
 open the accounts csv
     insert/append a new row on the bottom with the username and password they've inputted and all their scores as 0
-    return back to the original function (where it was called)
-
-ADD ADMIN FUNCTIONALITY
+    return back to where it was called with admin
