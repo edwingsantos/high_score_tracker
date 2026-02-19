@@ -1,25 +1,25 @@
 ES 1srt psedocode activity diagram
 
-open csv file and write it as file 
+define highscore save function with parameters game and new_score
 
-    try
-        make a for loop in line in file 
+    depending on the specific game set an index variable to a certain number (ex. game = "flappy bird": index = 2)
+    
+    open csv file and write it as file 
 
-        if return value is flappy bird
-            append the to the score to the third line 
+        skip header line
 
-        elif ruturn value is reaction time 
-            append row to the fourth line which is the reaction time
-            
-        elif return value is pong 
-            append the high score to the row in the 5th key
+        try
+            make a for loop for line in file 
 
+                if index is flappy bird (2)
+                    append the score at that index to a list called scores
 
-    excpet print that there is no info in the file 
+                elif index is reaction time (3)
+                    append the score at that index to a list called scores
+                    
+                elif index is pong (4)
+                    append the score at that index to a list called scores
 
-    else print space 
+        except print that there is no info in the file 
 
-
-
-
-
+        else print space 
