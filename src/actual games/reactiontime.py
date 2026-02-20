@@ -1,4 +1,3 @@
-import sys
 import pygame
 import random
 import time
@@ -15,9 +14,9 @@ def reaction_time_game():
     click_now = False
     early = False
     x=0
-    screen.fill(red)
     random.randint(5,20)
     pygame.display.set_caption("Reaction Game")
+    screen.fill(red)
     pygame.display.flip()
     while running == True:
         clock = pygame.time.Clock()
@@ -28,16 +27,18 @@ def reaction_time_game():
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and click_now == True:
                 running = False
                 early = False
-                reaction_time = clock.get_rawtime()
-            if x == 5 and click_now == False:
+                reaction_time = pygame.time.get_ticks() - start
+            if x == 14 and click_now == False:
                 click_now = True
                 screen.fill(green)
                 pygame.display.flip()
-                clock.tick(50)
-            if x < 5:
+                start = pygame.time.get_ticks()
+            if x < 14:
                 x+=1
+    pygame.quit()
     if early == False:
         print(f'{reaction_time}ms')
+        return reaction_time
     elif early == True:
         print("You clicked too early")
     pass

@@ -11,6 +11,12 @@ make a funtion for game chioce
             call user registration function
         else print to create an account and call main
 
+make a function for not loged in
+    while loop 
+        ask user to login, create a new account or log out
+        if user picks to create an account, call the registration funtion
+        elif user picks to log in/ log out, call that funtion funtion
+        else print to select an actual option and continue
 
 make a function for loged in
     while loop
@@ -20,14 +26,21 @@ make a function for loged in
             open the csv file and read it as file
             check if username and password are in the file
                 if username and password are not in the csv file, print that the account is not avalible and return
-                else call funtion for game choice
-
+                elif ask the user if they want to change account detail, play a game of log out
+                        if user choice is pick game call the game funtion
+                        elif user choice is to 
+                        elif choice is to log out, call main
+                 
 make a funtion for game choice
+    make a while loop
+        if game is flapy bird, call flappy bird 
+        elif game is pong, call pong, 
+         elif game is reaction time, call reaction time 
+        else print to select a actual option and continue
 
-            
-make a function for not loged in
-    while loop 
-        ask user to login, create a new account or log out
-        if user picks to create an account, call the registration funtion
-        elif user picks to log in/ log out, call that funtion funtion
-        else print to select an actual option and continue
+make a funtion for change detail
+    open the csv file and write it as file 
+    make user select the line they want to delete
+        delete the name and password of the csv file
+    make user input their new name and password 
+    call user registration funtion
