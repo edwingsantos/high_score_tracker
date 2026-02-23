@@ -1,4 +1,5 @@
 ask user to create a username
+
 open accounts csv and loop through every row
     if a row has that username
         tell the user that there is already and account with that name
