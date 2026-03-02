@@ -80,6 +80,11 @@ def flappy_bird():
     pipe2_group.add(pipe2)
     spawn_pipes()
 
+    bg = pygame.image.load("sprites/bg.png").convert()
+    # Scale the image to the screen size
+    bg = pygame.transform.scale(bg, (screen_width, screen_height))
+
+
     running = True
     start = False
     passed_pipe = False
@@ -98,7 +103,7 @@ def flappy_bird():
                 running = False
 
         # SET UP
-        screen.fill("light blue")
+        screen.blit(bg, (0, 0))
         bird_group.draw(screen)
         pipe1_group.draw(screen)
         pipe2_group.draw(screen)
@@ -109,7 +114,7 @@ def flappy_bird():
             pipe1_group.update()
             pipe2_group.update()
 
-            if bird.rect.bottom >= screen_height + 15:
+            if bird.rect.bottom >= screen_height - 72:
                 print("dead to bottom of screen")
                 running = False
             if bird.rect.top <= -30:
@@ -130,7 +135,7 @@ def flappy_bird():
         screen.blit(text_surface, text_rect)
 
         pygame.display.flip()
-        clock.tick(50)
+        clock.tick(45)
 
     pygame.quit()
     print(f"Score: {score}")
