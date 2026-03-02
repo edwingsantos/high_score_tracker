@@ -33,9 +33,7 @@ def login_logout(search):
     if username == "yippe skipy":
         print("hi")
     #call admin function
-       
 
-login_logout(search)
 
 
     #if the password and username are not in the csv
