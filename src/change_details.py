@@ -1,5 +1,5 @@
 import csv
-
+import registration
 
 #make a funtion for change detail
 def change(account):
@@ -26,7 +26,7 @@ def change(account):
             print("line doesn't exist")
             return
 #    call user registration funtion
-    
+    registration()
 
 
 
