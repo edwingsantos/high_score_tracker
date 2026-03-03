@@ -12,21 +12,26 @@ def login():
         #if user nanm is admin and password is yippe skipy
         if username == "admin" and password == "YIPPEESKIPPEE":
             found, admin = True, True
-            return found, admin
+            return ["admin", "YIPPEESKIPPEE"], found, admin
         #search for the username and the password in the accounts csv
         with open("docs//accounts.csv", mode = "r") as accounts_csv:
             reader = csv.reader(accounts_csv, delimiter=',')
         #if the password and username are in the csv
             for row in reader:
                 if username in row and password in row:
-                    print("Found")
+                    print("Account found!")
                     found = True
                     admin = False
                     #break the loop and return logged in with that account
                     #call main function
-                    return found, admin
+                    return [username, password], found, admin
         #if the password and username are not in the csv
         #print the password and username are invalid
             if not found:
                 print(f"{username} not found in csv file")
-                continue
+                register = input("Would you like to register an account (y/n)?")
+                if register == "y":
+                    register = "register"
+                    return None, register, admin
+                else:
+                    continue

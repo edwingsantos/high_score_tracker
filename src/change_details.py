@@ -2,7 +2,7 @@ import csv
 import registration
 
 #make a funtion for change detail
-def change(account):
+def change():
 #    open the csv file and write it as file 
     with open("docs//accounts.csv", "r+") as accounts_csv:
         DictReader = csv.DictReader(accounts_csv, delimiter=',')
@@ -12,7 +12,7 @@ def change(account):
             for i, row in enumerate(reader, start=1):
                 print(f"{i}. {row['username']}")
 #       make user select the line they want to delete
-        choice = int(input("Select what file you want to delte from the list above: \n"))
+        choice = int(input("Select what file you want to delete from the list above: \n"))
         if 1 <= choice <= i:
             accounts_csv.close()
             #delete the name and password of the csv file

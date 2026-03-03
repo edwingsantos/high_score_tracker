@@ -14,24 +14,28 @@ def main():
         choice = input("What would you like to do:\n 1: Log in\n 2: Create an account\n 3: Exit\nChoice: ").strip()
         #if user choice is logeg in, call the loged in funtion
         if choice == "1":
-            found, admin = login_logout.login()
+            account, found, admin = login_logout.login()
+            if found == "register":
+                registration.registration()
         #elif user chioce is not loged in, call the not logged in funtion
         elif choice == "2":
+            registration.registration()
+        elif choice == "3":
             print("Bye bye!")
             return
         else:
             print("Invalid option, try again")
         
         # for once the user is logged in
-        if found:
+        if found == True:
             while True:
-                choice = input("What would you like to do:\n 1. Flappy Bird\n 2. Reaction Time\n 3. Pong\n 4. Change account Details\n 5. Log out\nChoice: ").strip()
+                choice = input("What would you like to do:\n 1. Flappy Bird\n 2. Reaction Time\n 3. Pong\n 4. Delete Account and Exit\n 5. Log out\nChoice: ").strip()
                 if choice == "1":
-                    flappybird.flappy_bird()
-                elif choice == "2":
-                    pong.pong()
+                    flappybird.flappy_bird(account)
                 elif choice == "3":
-                    reactiontime.reaction_time_game()
+                    pong.pong(account)
+                elif choice == "2":
+                    reactiontime.reaction_time_game(account)
                 elif choice == "4":
                     change_details.change()
                 elif choice == "5":

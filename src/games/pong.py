@@ -1,9 +1,11 @@
 #Pong
+import highscores
+import pygame
 
-def pong():
-    import pygame
+def pong(account):
+    highscores.highscore_print("pong")
+
     pygame.init()
-
     screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN, vsync=1)
     clock = pygame.time.Clock()
     font = pygame.font.Font("sprites/font.TTF", size=48)
@@ -119,6 +121,5 @@ def pong():
 
     pygame.quit()
     print(f"Score: {score}")
-    return score
 
-pong()
+    highscores.highscore_save("pong", score, account)

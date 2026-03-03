@@ -1,8 +1,11 @@
 #Flappy Bird
+import highscores
+import pygame
+import random
 
-def flappy_bird():
-    import pygame
-    import random
+def flappy_bird(account):
+    highscores.highscore_print("flappy bird")
+    
     pygame.init()
     class Bird(pygame.sprite.Sprite):
         def __init__(self):
@@ -139,6 +142,5 @@ def flappy_bird():
 
     pygame.quit()
     print(f"Score: {score}")
-    return score
-
-flappy_bird()
+    
+    highscores.highscore_save("flappy bird", score, account)

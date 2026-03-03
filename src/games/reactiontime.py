@@ -1,8 +1,11 @@
 import pygame
 import random
 import time
+import highscores
 
-def reaction_time_game():
+def reaction_time_game(account):
+    highscores.highscore_print("reaction time")
+
     pygame.init()
     print("This is a reaction time game, click when the screen goes from red to green as fast as you can")
     time.sleep(2)
@@ -41,5 +44,5 @@ def reaction_time_game():
         return reaction_time
     elif early == True:
         print("You clicked too early")
-    pass
-reaction_time_game()
+    
+    highscores.highscore_save("reaction time", reaction_time, account)

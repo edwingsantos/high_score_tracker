@@ -12,7 +12,7 @@ def registration():
         #open accounts csv and loop through every row
         with open("docs/accounts.csv", newline="") as file:
             csv_reader = list(csv.DictReader(file))
-            header = csv_reader[0].keys() if csv_reader else ["username", "password", "score for flappybird", "score for reaction time", "score for pong"]
+            header = ["username", "password", "score for flappybird", "score for reaction time", "score for pong"]
         #if a row has that username
         exists = False
         for row in csv_reader:
@@ -33,6 +33,8 @@ def registration():
         #ask user if they would like a generated password or want to make one themselves
         password_choice = input("What would you like to do: \n 1. Type your own password \n 2. Generate a new password\nChoice: ").strip()
 
+        if password_choice != "1" and password_choice != "2":
+            password_choice = "1"
         #if they choose to have a password generated for them
         if password_choice == "1":
         #    ask the user to select the requirements they would like for their password
