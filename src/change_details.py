@@ -1,5 +1,5 @@
 import csv
-
+import registration
 
 #make a funtion for change detail
 def change(account):
@@ -26,30 +26,4 @@ def change(account):
             print("line doesn't exist")
             return
 #    call user registration funtion
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#    make user input their new name and password 
-    new_username = input("Enter new username: \n")
-    new_password = input("Enter new password: \n")
-    new_account = {"username": new_username, "password": new_password}
-    # Append the new account to CSV
-    rows.append(new_account)
-    with open("docs//accounts.csv", "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=new_account.keys())
-        writer.writeheader()
-        writer.writerows(rows)
+    registration()
