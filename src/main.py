@@ -8,6 +8,7 @@ from games import reactiontime
 
 #Make a function called main
 def main():
+    found = False
     #make a while loop
     while True:
     #Ask user if they are loged in or if they want to exit

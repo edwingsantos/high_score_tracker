@@ -14,18 +14,16 @@ def registration():
             csv_reader = list(csv.DictReader(file))
             header = ["username", "password", "score for flappybird", "score for reaction time", "score for pong"]
         #if a row has that username
-        exists = False
         for row in csv_reader:
             if username == row["username"]:
     #tell the user that there is already and account with that name
                 print("There is already an account with that name.")
-            else:
     #ask them if they would like to try and login to that account
                 login = input("Would you like to log in with that name? (Y/N)").strip().upper()
     #if they would
                 if login == "Y":
     #call the login_logout function
-                    login_logout()
+                    login_logout.login()
     # if they want still want to create an account
                 if login == "N":
     # loop back to the beginning of the file (continue in python)
@@ -113,9 +111,9 @@ def registration():
                 if not requirements:
                     print("you must have a requirement")
                     return generate()
-                print("\nPossible Passwords:")
+                print("\nPassword:")
                 #make a loop 4 times, for i in range
-                for i in range(4):
+                for i in range(1):
                     #make password empty and do another loop, but now in range lenght
                     password = ""
                     for i in range(length):
@@ -125,7 +123,7 @@ def registration():
                 return password
             password = generate()
         #   save new account to CSV
-        new_row = {"username": username, "password": password, 
+        new_row = {"username": username, "password": password.strip('"'), 
                    "score for flappybird": "0", "score for reaction time": "0", "score for pong": "0"}
         with open("docs/accounts.csv", "a", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=header)
