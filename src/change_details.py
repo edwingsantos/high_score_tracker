@@ -25,5 +25,3 @@ def change():
         else:
             print("line doesn't exist")
             return
-#    call user registration funtion
-        registration()
