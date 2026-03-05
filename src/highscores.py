@@ -71,7 +71,7 @@ def highscore_print(game):
             except:
                 continue
     
-    scores.sort()
+    scores.sort(key=lambda row: row[index], reverse=True)
 
     if game == "reaction time":
         scores.reverse()
