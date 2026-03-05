@@ -8,11 +8,13 @@ from games import reactiontime
 
 #Make a function called main
 def main():
+    print("\033c", end="")
     found = False
     #make a while loop
     while True:
     #Ask user if they are loged in or if they want to exit
         choice = input("What would you like to do:\n 1: Log in\n 2: Create an account\n 3: Exit\nChoice: ").strip()
+        print()
         #if user choice is logeg in, call the loged in funtion
         if choice == "1":
             account, found, admin = login_logout.login()
@@ -39,6 +41,8 @@ def main():
                     reactiontime.reaction_time_game(account)
                 elif choice == "4":
                     change_details.change()
+                    if account[0] != "admin":
+                        break
                 elif choice == "5":
                     main()
                 else:

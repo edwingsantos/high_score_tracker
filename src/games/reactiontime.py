@@ -21,6 +21,7 @@ def reaction_time_game(account):
     pygame.display.set_caption("Reaction Game")
     screen.fill(red)
     pygame.display.flip()
+    time.sleep(5)
     while running == True:
         clock = pygame.time.Clock()
         for event in pygame.event.get():
@@ -41,8 +42,10 @@ def reaction_time_game(account):
     pygame.quit()
     if early == False:
         print(f'{reaction_time}ms')
+        highscores.highscore_save("reaction time", reaction_time, account)
         return reaction_time
     elif early == True:
         print("You clicked too early")
-    
-    highscores.highscore_save("reaction time", reaction_time, account)
+        reaction_time = 9999
+        highscores.highscore_save("reaction time", reaction_time, account)
+        return reaction_time

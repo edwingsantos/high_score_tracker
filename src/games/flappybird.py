@@ -4,8 +4,8 @@ import pygame
 import random
 
 def flappy_bird(account):
-    highscores.highscore_print("flappy bird")
-    
+    highscores.highscore_print("flappy bird")    
+
     pygame.init()
     class Bird(pygame.sprite.Sprite):
         def __init__(self):
@@ -102,7 +102,6 @@ def flappy_bird(account):
                 start = True
                 bird.jump()
             if pygame.Rect.colliderect(bird.rect, pipe1.rect) == True or pygame.Rect.colliderect(bird.rect, pipe2.rect) == True:
-                print("dead to pipe")
                 running = False
 
         # SET UP
@@ -118,10 +117,8 @@ def flappy_bird(account):
             pipe2_group.update()
 
             if bird.rect.bottom >= screen_height - 72:
-                print("dead to bottom of screen")
                 running = False
             if bird.rect.top <= -30:
-                print("dead to top of screen")
                 running = False
             if pipe1.rect.center[0] < 0:
                 spawn_pipes()
