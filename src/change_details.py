@@ -13,6 +13,8 @@ def change():
                 print(f"{i}. {row['username']}")
 #       make user select the line they want to delete
         choice = int(input("Select what file you want to delete from the list above: \n"))
+        while not choice.is_integer():
+            choice = int(input("Select what file you want to delete from the list above: \n"))
         if 1 <= choice <= i:
             accounts_csv.close()
             #delete the name and password of the csv file

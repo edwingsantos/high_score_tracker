@@ -19,7 +19,7 @@ def login():
         #if the password and username are in the csv
             for row in reader:
                 if username in row and password in row:
-                    print("Account found!")
+                    print("\nAccount found!\n")
                     found = True
                     admin = False
                     #break the loop and return logged in with that account

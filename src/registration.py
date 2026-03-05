@@ -41,6 +41,8 @@ def registration():
     #            ask them to confirm if that's the password they'd like
                 confirm = input("Confirm your password:\n")
                 if password == confirm:
+                    if username == "admin" and password == "YIPPEESKIPPEE":
+                        print("Welcome Admin.")
                     break
                 else:
                     print("Passwords do not match. Try again.")
@@ -125,7 +127,7 @@ def registration():
         #   save new account to CSV
         new_row = {"username": username, "password": password.strip('"'), 
                    "score for flappybird": "0", "score for reaction time": "0", "score for pong": "0"}
-        with open("docs/accounts.csv", "a", newline="") as f:
+        with open("docs//accounts.csv", "a", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=header)
             if f.tell() == 0:  
                 # if file is empty, write header
@@ -133,4 +135,4 @@ def registration():
             writer.writerow(new_row)
         print(f"Account for '{username}' created successfully!")
         #   break the loop
-        break  
+        break
