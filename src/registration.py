@@ -10,7 +10,7 @@ def registration():
         username = input("Please input a new username: ").strip()
 
         #open accounts csv and loop through every row
-        with open("docs/accounts.csv", newline="") as file:
+        with open("docs/accounts.csv", "r", newline="") as file:
             csv_reader = list(csv.DictReader(file))
             header = ["username", "password", "score for flappybird", "score for reaction time", "score for pong"]
         #if a row has that username
@@ -24,6 +24,7 @@ def registration():
                 if login == "Y":
     #call the login_logout function
                     login_logout.login()
+                    break
     # if they want still want to create an account
                 if login == "N":
     # loop back to the beginning of the file (continue in python)

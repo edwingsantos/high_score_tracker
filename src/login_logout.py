@@ -34,4 +34,4 @@ def login():
                     register = "register"
                     return None, register, admin
                 else:
-                    continue
+                    break
