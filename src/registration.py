@@ -126,6 +126,7 @@ def registration():
                 return password
             password = generate()
         #   save new account to CSV
+        password = login_logout.hash_pw(f"{password}")
         new_row = {"username": username, "password": password.strip('"'), 
                    "score for flappybird": "0", "score for reaction time": "0", "score for pong": "0"}
         with open("docs//accounts.csv", "a", newline="") as f:
