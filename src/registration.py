@@ -23,8 +23,7 @@ def registration():
     #if they would
                 if login == "Y":
     #call the login_logout function
-                    login_logout.login()
-                    break
+                    return
     # if they want still want to create an account
                 if login == "N":
     # loop back to the beginning of the file (continue in python)

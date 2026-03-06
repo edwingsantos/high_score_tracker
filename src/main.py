@@ -40,7 +40,7 @@ def main():
                 elif choice == "2":
                     reactiontime.reaction_time_game(account)
                 elif choice == "4":
-                    change_details.change(account, admin=False)
+                    change_details.change(account)
                     if account[0] != "admin":
                         break
                 elif choice == "5":

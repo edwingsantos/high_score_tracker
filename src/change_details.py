@@ -1,29 +1,41 @@
 import csv
-import registration
 
-#make a funtion for change detail
-def change():
-#    open the csv file and write it as file 
-    with open("docs//accounts.csv", "r+") as accounts_csv:
-        DictReader = csv.DictReader(accounts_csv, delimiter=',')
-        with open("docs//accounts.csv", newline="") as f:
-            reader = csv.DictReader(f) 
-            #read each row as a dictionary
-            for i, row in enumerate(reader, start=1):
-                print(f"{i}. {row['username']}")
-#       make user select the line they want to delete
-        choice = int(input("Select what file you want to delete from the list above: \n"))
-        while not choice.is_integer():
-            choice = int(input("Select what file you want to delete from the list above: \n"))
-        if 1 <= choice <= i:
-            accounts_csv.close()
-            #delete the name and password of the csv file
-            rows = list(csv.DictReader(open("docs//accounts.csv")))
-            rows.pop(choice-1)
-            with open("docs//accounts.csv", "w", newline="") as f:
-                writer = csv.DictWriter(f, fieldnames=rows[0].keys())
-                writer.writeheader()
-                writer.writerows(rows)
-        else:
-            print("line doesn't exist")
-            return
+def change(account):
+    new_details = []
+
+    new = input("Would you like a new username? (y/n) ")
+    if new == "y":
+        new_username = input("What will your new username be? ")
+        new_details.append(new_username)
+    else:
+        new_details.append(account[0])
+    new = input("Would you like a new password? (y/n) ")
+    if new == "y":
+        new_password = input("What will your new password be? ")
+        new_details.append(new_password)
+    else:
+        new_details.append(account[1])
+    
+    fb_score = input("Would you like to reset your Flappy Bird score? (y/n) ")
+    rt_score = input("Would you like to reset your Reaction Time Game score? (y/n) ")
+    po_score = input("Would you like to reset your Pong score? (y/n) ")
+    
+    with open("docs/accounts.csv", "r+") as file:
+        reader = csv.DictReader(file)
+        rows = list(csv.DictReader(open("docs/accounts.csv")))
+        for row in reader:
+            if row[0] == account[0]:
+                if fb_score == "y":
+                    new_details.append("0")
+                else:
+                    new_details.append(row[2])
+                if rt_score == "y":
+                    new_details.append("0")
+                else:
+                    new_details.append(row[3])
+                if po_score == "y":
+                    new_details.append("0")
+                else:
+                    new_details.append(row[4])
+                rows.pop(row)
+        rows.append(new_details)

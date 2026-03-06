@@ -4,7 +4,7 @@ import pygame
 import random
 
 def flappy_bird(account):
-    highscores.highscore_print("flappy bird")    
+    highscores.highscore_print("flappy bird")
 
     pygame.init()
     class Bird(pygame.sprite.Sprite):

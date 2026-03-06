@@ -77,5 +77,6 @@ def highscore_print(game):
     if game == "reaction time":
         scores.reverse()
     
-    print(scores)
-    return
+    for i in scores:
+        print(i[1])
+    
