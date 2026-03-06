@@ -29,7 +29,6 @@ def main():
             return
         else:
             print("Invalid option, try again")
-        
         # for once the user is logged in
         if found == True:
             while True:
