@@ -2,6 +2,7 @@
 import login_logout
 import change_details
 import registration
+import highscores
 from games import flappybird
 from games import pong
 from games import reactiontime
@@ -32,7 +33,7 @@ def main():
         # for once the user is logged in
         if found == True:
             while True:
-                choice = input("What would you like to do:\n 1. Flappy Bird\n 2. Reaction Time\n 3. Pong\n 4. Delete Account and Exit\n 5. Log out\nChoice: ").strip()
+                choice = input("What would you like to do:\n 1. Flappy Bird\n 2. Reaction Time\n 3. Pong\n 4. Change Account Details\n 5. View Highscores\n 6. Log Out\nChoice: ").strip()
                 if choice == "1":
                     flappybird.flappy_bird(account)
                 elif choice == "3":
@@ -40,10 +41,12 @@ def main():
                 elif choice == "2":
                     reactiontime.reaction_time_game(account)
                 elif choice == "4":
-                    change_details.change()
+                    change_details.change(account, admin=False)
                     if account[0] != "admin":
                         break
                 elif choice == "5":
+                    highscores.highscore_print("all")
+                elif choice == "6":
                     main()
                 else:
                     print("Invalid option, try again")
