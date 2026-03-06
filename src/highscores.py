@@ -51,15 +51,13 @@ def highscore_print(game):
     elif game == "all":
         with open("docs/accounts.csv", "r") as file:
             pass
-            content = csv.reader(file)
+            content = csv.DictReader(file)
             headers = next(content)
             row = []
             for line in content:
-                row.append({"Username": line[0], "Flappy Bird": line[2], "Reaction Time": line[3], "Pong": line[4]})
-                
-            for line in row:
-                print(line)
-                return 
+                row.append({"Username": line["username"], "Flappy Bird": line["score for flappybird"], "Reaction Time": line["score for reaction time"], "Pong": line["score for pong"]})
+                print(row)
+            return
 
     with open("docs/accounts.csv", "r") as file:
         csv_reader = csv.reader(file)
@@ -77,6 +75,5 @@ def highscore_print(game):
     if game == "reaction time":
         scores.reverse()
     
-    for i in scores:
-        print(i[1])
-    
+    print(scores)
+    return
