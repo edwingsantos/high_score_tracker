@@ -5,6 +5,10 @@
 
 
 import csv
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CSV_PATH = os.path.join(BASE_DIR, "docs", "accounts.csv")
+
 #define highscore save function with parameters game, new_score, account
 def highscore_save(game, new_score, account):
     #depending on the specific game set an index variable to a certain number (ex. game = "flappy bird": index = 2)
@@ -14,7 +18,7 @@ def highscore_save(game, new_score, account):
     line_to_append[1] = account[1]
 
     #open csv file and write it as file 
-    with open("docs/accounts.csv", "a") as file:
+    with open(CSV_PATH, "a") as file:
         #append a new line to the file with username, password, and the score of the game that the user played as well as zeros for every other score
 
         csv_writer = csv.writer(file)
@@ -49,34 +53,37 @@ def highscore_print(game):
     elif game == "pong":
         index = 4
     elif game == "all":
-        with open("docs/accounts.csv", "r") as file:
+        with open(CSV_PATH, "r") as file:
             pass
             content = csv.reader(file)
             headers = next(content)
-            row = []
+            rows = []
             for line in content:
-                row.append({"Username": line[0], "Flappy Bird": line[2], "Reaction Time": line[3], "Pong": line[4]})
-                
-            for line in row:
-                print(line)
-                return 
+                rows.append([line[0], line[2], line[3], line[4]])
+            
+            print("\nUsername: Flappy Bird, Reaction Time Game, Pong")
+            for row in rows:
+                print(f"{row[0]}: {row[1]}, {row[2]}, {row[3]}")
+            
+            return
 
-    with open("docs/accounts.csv", "r") as file:
-        csv_reader = csv.reader(file)
+    with open(CSV_PATH, "r") as file:
+        csv_reader = csv.DictReader(file)
 
         for row in csv_reader:
             try:
                 row[index] = int(row[index])
-                x = [row[0], row[index]]
-                scores.append(x)
+                scores.append(row)
             except:
                 continue
+
     scores = scores[:10]
-    scores.sort()
+    scores.sort(key=lambda row: row[index], reverse=True)
 
     if game == "reaction time":
         scores.reverse()
     
+    print()
     for i in scores:
-        print(i[1])
-    
+        print(f"{i[0]}: {i[1]}")
+    print()
