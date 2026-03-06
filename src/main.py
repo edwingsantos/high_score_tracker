@@ -1,4 +1,3 @@
-# NS 1st
 import login_logout
 import change_details
 import registration
