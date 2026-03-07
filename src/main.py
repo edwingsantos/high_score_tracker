@@ -40,8 +40,6 @@ def main():
                     reactiontime.reaction_time_game(account)
                 elif choice == "4":
                     change_details.change(account)
-                    if account[0] != "admin":
-                        break
                 elif choice == "5":
                     highscores.highscore_print("all")
                 elif choice == "6":

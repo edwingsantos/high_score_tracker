@@ -30,3 +30,7 @@ This project tracks the highscores of users, and compares them. It can show you 
 - Will5l
 - nicole12131
 - futashikana
+
+## Notes
+***
+- Admin currently does not work!
